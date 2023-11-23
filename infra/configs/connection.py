@@ -2,8 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from infra.configs.base import Base
 
-from infra.entities import response_file, file, response
-from infra.entities import poll, poll_option, poll_vote
+from infra.entities import person, question, response
 
 class DBConnectionHandler:
     CONNECTION_STRING = "sqlite:///data/data.db"
