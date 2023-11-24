@@ -1,14 +1,11 @@
-from infra.configs.connection import DBConnectionHandler
+from responses_sheet_handler import ResponsesSheetHandler
+from app import App
+from fuzzynator import Fuzzynator
 
 if __name__ == '__main__':
-    db_handler = DBConnectionHandler()
-    db_handler.create_tables()
+    responses_sheet_handler = ResponsesSheetHandler()
 
-    """
-    fuzzy_system = FuzzySystem()
-    fuzzy_system.create_input_variables()
-    fuzzy_system.create_output_variables()
-    fuzzy_system.create_rules()
-    output_value = fuzzy_system.compute_output()
-    print("Output value:", output_value)
-    """
+    fuzzynator = Fuzzynator(responses_sheet_handler, talkative=True)
+
+    app = App(responses_sheet_handler, fuzzynator)
+    app.mainloop()
