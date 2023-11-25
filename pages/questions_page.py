@@ -48,10 +48,17 @@ class QuestionsPage(Page):
         if self.selected_answer is None:
             return
 
+        self.controller.fuzzynator.compute_output()
+        
         if (self.selected_answer is not None):
             self.response_buttons[self.selected_answer]['state'] = tk.ACTIVE
         
         self.get_question()
+
+
+    @staticmethod
+    def output_minimum_difference(output):
+        return output[0] - output[1]
 
     def create_widgets(self):
         self.header_frame = tk.Frame(self)
@@ -59,11 +66,19 @@ class QuestionsPage(Page):
 
         self.main_menu_button = tk.Button(
             self.header_frame,
-            text='Voltar para Menu principal',
+            text='Voltar',
             font=('Arial', 14),
             command=lambda: self.controller.show_frame('main_menu')
         )
         self.main_menu_button.pack(side=tk.LEFT, padx=20, pady=5, fill=tk.BOTH)
+
+        self.next_question_button = tk.Button(
+            self.header_frame,
+            text='Próxima pergunta',
+            font=('Arial', 14),
+            command=self.next_question
+        )
+        self.next_question_button.pack(side=tk.RIGHT, padx=20, pady=5, fill=tk.BOTH)
 
         self.question_label = tk.Label(self, text='', font=('Arial', 20), justify=tk.CENTER)
         self.question_label.pack(padx=20, pady=20, fill=tk.BOTH)
@@ -85,13 +100,3 @@ class QuestionsPage(Page):
 
 
         self.buttons_frame.pack(padx=20, pady=20, fill=tk.BOTH, expand=True)
-
-        self.next_question_button = tk.Button(
-            self,
-            text='Próxima pergunta',
-            font=('Arial', 16),
-            command=self.next_question
-        )
-        self.next_question_button.pack(padx=20, pady=5, fill=tk.BOTH)
-
-

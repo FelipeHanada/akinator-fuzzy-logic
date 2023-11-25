@@ -1,6 +1,6 @@
 from responses_sheet_handler import ResponsesSheetHandler
 from app import App
-from fuzzynator import Fuzzynator
+from fuzzynator.fuzzynator import Fuzzynator
 
 if __name__ == '__main__':
     responses_sheet_handler = ResponsesSheetHandler()

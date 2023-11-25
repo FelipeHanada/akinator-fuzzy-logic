@@ -9,8 +9,14 @@ class ResponsesSheetHandler:
     def get_questions(self):
         return [question for question in self.df.columns if question.startswith('Você')]
     
-    def get_people(self):
+    def get_names_tuples(self):
         return self.df[self.NAME_COLUMN]
+
+    def get_questions_tuples(self):
+        return self.df[self.get_questions()]
+
+    def get_people(self):
+        return self.df[self.NAME_COLUMN].tolist()
     
     def get_all_responses(self):
         return self.df[[self.NAME_COLUMN] + self.get_questions()]
