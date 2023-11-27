@@ -26,8 +26,6 @@ class GenieGIF(tk.Label):
             pass
         self.frames = cycle(frames[1:])
 
-        print(frames)
-
         try:
             self.delay = im.info['duration']
         except:

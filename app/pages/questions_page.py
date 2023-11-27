@@ -6,16 +6,18 @@ from app.pages.page import Page
 from app.components.footer import Footer
 from app.components.genie_gif import GenieGIF
 
+from random import randint
+
 class QuestionsPage(Page):
     def __init__(self, container, controller):
-        self.show_view = False
+        self.show_view = True
         
         super().__init__(container, controller, bg='#00100B')
 
     def setup(self):
         self.questions_stack = self.controller.responses_sheet_handler.get_questions()
 
-        self.questions_stack = self.questions_stack[:3]
+        self.questions_stack = self.questions_stack[:randint(5, 10)]
         shuffle(self.questions_stack)
         self.answered_questions_stack = []
 

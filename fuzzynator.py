@@ -93,7 +93,7 @@ class Fuzzynator(ctrl.ControlSystem):
             for output_i, output_mf in enumerate(self.OUTPUTS):
                 for question in self.responses_sheet_handler.get_questions():
                     response = self.responses_sheet_handler.get_response(person, question)
-                    response_value = int(response == 'sim')
+                    response_value = int(response.lower() == 'sim')
                     input_mf = self.INPUTS[len(self.INPUTS) - 1 - abs(response_value * (len(self.INPUTS) - 1) - output_i)]
 
                     antecedent = self.input_variables[question][input_mf]

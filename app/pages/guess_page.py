@@ -6,14 +6,15 @@ from app.pages.page import Page
 from app.components.genie_gif import GenieGIF
 from app.components.footer import Footer
 
+from random import choice
+
 class GuessPage(Page):
     def __init__(self, container, controller):
         super().__init__(container, controller, bg='#00100B')
 
     def setup(self):
         result = next(iter(self.controller.result.items()))
-        print(result)
-        self.name_label['text'] = result[0]
+        self.name_label['text'] = choice(self.controller.responses_sheet_handler.get_people())
 
     TITLE_FONT = ('Open Sans', 24)
     def create_header(self):
@@ -42,7 +43,7 @@ class GuessPage(Page):
         self.create_header()
 
         self.main_wrapper = tk.Frame(self, bg=self['bg'])
-        self.main_wrapper.pack()
+        self.main_wrapper.pack(pady=50)
 
         self.genie_gif = GenieGIF(self.main_wrapper, bg=self['bg'])
         self.genie_gif.pack(side=tk.LEFT)
